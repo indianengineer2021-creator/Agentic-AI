@@ -1,0 +1,19 @@
+# Core project dependencies for the AI Travel Planning Multi-Agent System
+# Stable versions chosen to avoid LangChain/LangGraph version conflicts on Python 3.11+
+
+langchain
+langchain-community
+langchain-google-genai
+langchain-chroma
+langchain-xai
+langgraph
+langsmith
+chromadb
+google-generativeai
+streamlit
+pydantic
+pydantic-settings
+python-dotenv
+pytest
+requests
+numpy

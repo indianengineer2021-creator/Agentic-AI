@@ -75,12 +75,14 @@ class DailyItinerary(BaseModel):
 
 
 class TravelReview(BaseModel):
-    """Structured review produced by the Grok reviewer."""
+    """Structured review produced by the travel-plan reviewer."""
 
     approved: bool = True
     issues: list[str] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
     suggestions: list[str] = Field(default_factory=list)
+    provider: str = "rules"
+    model: Optional[str] = None
 
 
 class FinalTravelPlan(BaseModel):

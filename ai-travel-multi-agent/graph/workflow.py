@@ -12,7 +12,7 @@ from graph.nodes import (
     budget_check_node,
     final_response_node,
     flight_agent_node,
-    grok_reviewer_node,
+    groq_reviewer_node,
     hotel_agent_node,
     itinerary_agent_node,
     optimization_node,
@@ -36,7 +36,7 @@ def build_workflow() -> StateGraph:
     workflow.add_node("optimization", optimization_node)
     workflow.add_node("rag_agent", rag_agent_node)
     workflow.add_node("itinerary_agent", itinerary_agent_node)
-    workflow.add_node("grok_reviewer", grok_reviewer_node)
+    workflow.add_node("groq_reviewer", groq_reviewer_node)
     workflow.add_node("review_decision", review_decision_node)
     workflow.add_node("final_response", final_response_node)
 
@@ -62,8 +62,8 @@ def build_workflow() -> StateGraph:
     )
     workflow.add_edge("optimization", "budget_agent")
     workflow.add_edge("rag_agent", "itinerary_agent")
-    workflow.add_edge("itinerary_agent", "grok_reviewer")
-    workflow.add_edge("grok_reviewer", "review_decision")
+    workflow.add_edge("itinerary_agent", "groq_reviewer")
+    workflow.add_edge("groq_reviewer", "review_decision")
 
     def review_routing(state: dict[str, Any]) -> str:
         if state.get("workflow_status") == "approved":

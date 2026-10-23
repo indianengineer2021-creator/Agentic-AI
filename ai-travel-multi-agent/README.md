@@ -13,12 +13,13 @@ This is Phase 1 of the development plan:
 
 ## Planned architecture
 
-The final system will include:
+The system includes:
 
 - Streamlit UI for trip input
 - LangGraph supervisor orchestrating specialized agents
 - Gemini-powered planning and retrieval
-- Grok reviewer for critique and validation
+- Optional Groq-powered reviewer that cross-checks specialist-agent outputs
+- Rule-based review when Groq is not configured
 - ChromaDB vector store for travel knowledge retrieval
 - LangSmith tracing and observability
 - Pydantic models for strong validation
@@ -39,7 +40,11 @@ The project is organized into the following major directories:
 
 ## Running
 
-This scaffold is a starting point only. The full application implementation will be added in later phases.
+Install the dependencies and set `GROQ_API_KEY` in `.env` to enable model-based analysis
+of the flight, hotel, activity, budget, retrieval, and itinerary agent outputs. The
+reviewer uses `GROQ_MODEL` (default: `llama-3.3-70b-versatile`). Without a Groq key,
+the workflow continues to use deterministic review checks. The existing xAI Grok
+configuration (`XAI_API_KEY` / `GROK_MODEL`) is separate from Groq.
 
 ## Rebuilding the travel knowledge vector store
 

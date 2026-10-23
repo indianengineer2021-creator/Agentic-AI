@@ -58,6 +58,17 @@ def render_plan(result: dict) -> None:
 
     st.subheader("🔍 AI Review")
     st.write(final_plan.get("review_summary", "Review not available."))
+    review = result.get("review") or {}
+    if review.get("provider") == "groq":
+        st.caption(f"Reviewed by Groq ({review.get('model', 'configured model')}).")
+    else:
+        st.caption("Reviewed with rule-based checks. Set GROQ_API_KEY to enable Groq analysis.")
+    for issue in review.get("issues", []):
+        st.warning(issue)
+    for warning in review.get("warnings", []):
+        st.info(warning)
+    for suggestion in review.get("suggestions", []):
+        st.write(f"Suggestion: {suggestion}")
 
     st.subheader("🤖 Agent Execution Summary")
     st.write(result.get("workflow_status", "complete"))

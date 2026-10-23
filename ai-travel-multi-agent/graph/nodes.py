@@ -113,8 +113,8 @@ def itinerary_agent_node(state: dict[str, Any]) -> dict[str, Any]:
     return state
 
 
-def grok_reviewer_node(state: dict[str, Any]) -> dict[str, Any]:
-    """Give the itinerary an independent review using the Grok reviewer logic."""
+def groq_reviewer_node(state: dict[str, Any]) -> dict[str, Any]:
+    """Review the specialist agents' outputs before finalizing the plan."""
     review = review_plan(state)
     state["review"] = review.model_dump()
     return state
@@ -164,7 +164,7 @@ __all__ = [
     "optimization_node",
     "rag_agent_node",
     "itinerary_agent_node",
-    "grok_reviewer_node",
+    "groq_reviewer_node",
     "review_decision_node",
     "final_response_node",
 ]
